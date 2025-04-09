@@ -5,3 +5,8 @@ function getComputerChoice() {
     if (choice == 2) return "paper";
     return "scissors";
 }
+
+// returns user's choice (“rock”, “paper” or “scissors”).
+function getHumanChoice() {
+    return prompt('Rock, Paper or Scissors?').toLowerCase();
+}
