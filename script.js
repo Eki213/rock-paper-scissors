@@ -1,3 +1,7 @@
+//variables to keep track of the players score.
+let humanScore = 0;
+let computerScore = 0;
+
 // returns randomly “rock”, “paper” or “scissors”.
 function getComputerChoice() {
     const choice = Math.floor(Math.random() * 3) + 1;
