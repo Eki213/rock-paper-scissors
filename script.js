@@ -14,3 +14,29 @@ function getComputerChoice() {
 function getHumanChoice() {
     return prompt('Rock, Paper or Scissors?').toLowerCase();
 }
+
+// Plays a single round and logs the result.
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice == computerChoice) {
+        console.log(`Tie. Both picked ${capitalize(humanChoice)}.`);
+        return;
+    }
+
+    let playerWins =
+        (humanChoice == 'scissors' && computerChoice == 'paper') ||
+        (humanChoice == 'paper' && computerChoice == 'rock') ||
+        (humanChoice == 'rock' && computerChoice == 'scissors');
+    
+    if (playerWins) {
+        humanScore++;
+        console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`);
+    } else {
+        computerScore++;
+        console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`);
+    }
+}
+
+// capitalize a word
+function capitalize(word) {
+    return word.at(0).toUpperCase() + word.slice(1).toLowerCase();
+}
