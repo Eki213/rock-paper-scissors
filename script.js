@@ -1,4 +1,5 @@
 const selection = document.querySelector('.selection');
+const roundResult = document.querySelector('.round-result');
 let humanScore = 0;
 let computerScore = 0;
 
@@ -12,7 +13,7 @@ function getComputerChoice() {
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == computerChoice) {
-        console.log(`Tie. Both picked ${capitalize(humanChoice)}.`);
+        roundResult.textContent = `Tie. Both picked ${capitalize(humanChoice)}.`;
         return;
     }
 
@@ -23,10 +24,10 @@ function playRound(humanChoice, computerChoice) {
 
     if (playerWins) {
         humanScore++;
-        console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`);
+        roundResult.textContent = `You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`;
     } else {
         computerScore++;
-        console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`);
+        roundResult.textContent = `You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`;
     }
 }
 
