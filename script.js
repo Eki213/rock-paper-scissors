@@ -1,4 +1,8 @@
-// returns randomly “rock”, “paper” or “scissors”.
+const selection = document.querySelector('.selection');
+let humanScore = 0;
+let computerScore = 0;
+
+
 function getComputerChoice() {
     const choice = Math.floor(Math.random() * 3) + 1;
     if (choice == 1) return "rock";
@@ -6,51 +10,31 @@ function getComputerChoice() {
     return "scissors";
 }
 
-// returns user's choice (“rock”, “paper” or “scissors”).
-function getHumanChoice() {
-    return prompt('Rock, Paper or Scissors?').toLowerCase();
-}
-
-// Plays a game of 5 rounds and displays the winner.
-function playGame() {
-    //variables to keep track of the players' score.
-    let humanScore = 0;
-    let computerScore = 0;
-
-    // Plays a single round and logs the result
-    function playRound(humanChoice, computerChoice) {
-        if (humanChoice == computerChoice) {
-            console.log(`Tie. Both picked ${capitalize(humanChoice)}.`);
-            return;
-        }
-
-        let playerWins =
-            (humanChoice == 'scissors' && computerChoice == 'paper') ||
-            (humanChoice == 'paper' && computerChoice == 'rock') ||
-            (humanChoice == 'rock' && computerChoice == 'scissors');
-        
-        if (playerWins) {
-            humanScore++;
-            console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`);
-        } else {
-            computerScore++;
-            console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`);
-        }
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice == computerChoice) {
+        console.log(`Tie. Both picked ${capitalize(humanChoice)}.`);
+        return;
     }
 
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
+    let playerWins =
+        (humanChoice == 'scissors' && computerChoice == 'paper') ||
+        (humanChoice == 'paper' && computerChoice == 'rock') ||
+        (humanChoice == 'rock' && computerChoice == 'scissors');
 
-    if (humanScore > computerScore) {
-        console.log('You won the game!');
-    } else if (humanScore < computerScore) {
-        console.log('You lost the game!');
+    if (playerWins) {
+        humanScore++;
+        console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`);
     } else {
-        console.log("It's a tie game!");
+        computerScore++;
+        console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`);
     }
 }
-// capitalize a word
+
+selection.addEventListener('click', (e) => {
+    const playerSelection = e.target.id;
+    if (playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors') playRound(playerSelection, getComputerChoice());
+});
+
 function capitalize(word) {
     return word.at(0).toUpperCase() + word.slice(1).toLowerCase();
 }
